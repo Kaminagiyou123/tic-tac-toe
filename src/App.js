@@ -1,6 +1,16 @@
 import "./App.css";
+import React, { useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes, faCircle } from "@fortawesome/free-solid-svg-icons";
+import { useProductsContext } from "./Context";
 const array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
 function App() {
+  const { setMove, newRound, boardArray } = useProductsContext();
+
+  useEffect(() => {
+    newRound();
+  }, [boardArray]);
   return (
     <div className='App'>
       <h3 className='main-title'>Tic-Tac-Toe</h3>
@@ -19,7 +29,25 @@ function App() {
       </div>
       <div className='ttt-board'>
         {array.map((item) => {
-          return <button className='item'>{item}</button>;
+          return (
+            <button
+              className='item'
+              data-id={item}
+              onClick={(e) => {
+                const clickId = e.target.dataset.id;
+
+                e.preventDefault();
+                setMove(parseInt(clickId - 1));
+              }}
+            >
+              {boardArray[parseInt(item) - 1] === 1 && (
+                <FontAwesomeIcon icon={faTimes} className='fa' size='4x' />
+              )}
+              {boardArray[parseInt(item) - 1] === 0 && (
+                <FontAwesomeIcon icon={faCircle} size='4x' className='fa' />
+              )}
+            </button>
+          );
         })}
       </div>
       <div className='game-container'>
