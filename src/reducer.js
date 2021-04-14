@@ -57,13 +57,13 @@ const reducer = (state, action) => {
     if (decideWinner() === 1) {
       return {
         ...state,
-        playerOneScore: state.playerOneScore + 1,
+        playerOneScore: state.playerOneScore + 0.5,
         winningPlayer: 1,
       };
     } else if (decideWinner() === 0) {
       return {
         ...state,
-        playerTwoScore: state.playerTwoScore + 1,
+        playerTwoScore: state.playerTwoScore + 0.5,
         winningPlayer: 2,
       };
     } else {
