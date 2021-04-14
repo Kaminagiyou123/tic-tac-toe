@@ -16,12 +16,21 @@ export const ProductsProvider = ({ children }) => {
   const newRound = () => {
     dispatch({ type: "NEW_ROUND" });
   };
+
+  const startNewRound = () => {
+    dispatch({ type: "START_NEW_ROUND" });
+  };
+  const startNewGame = () => {
+    dispatch({ type: "START_NEW_GAME" });
+  };
   return (
     <ProductsContext.Provider
       value={{
         ...state,
         setMove,
         newRound,
+        startNewRound,
+        startNewGame,
       }}
     >
       {children}

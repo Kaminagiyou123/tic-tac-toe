@@ -6,7 +6,13 @@ import { useProductsContext } from "./Context";
 const array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 function App() {
-  const { setMove, newRound, boardArray } = useProductsContext();
+  const {
+    setMove,
+    newRound,
+    boardArray,
+    startNewRound,
+    startNewGame,
+  } = useProductsContext();
 
   useEffect(() => {
     newRound();
@@ -51,8 +57,14 @@ function App() {
         })}
       </div>
       <div className='game-container'>
-        <button className='new-g-btn'> New Round</button>
-        <button className='new-g-btn'> New Game </button>
+        <button className='new-g-btn' onClick={startNewRound}>
+          {" "}
+          New Round
+        </button>
+        <button className='new-g-btn' onClick={startNewGame}>
+          {" "}
+          New Game{" "}
+        </button>
       </div>
     </div>
   );
