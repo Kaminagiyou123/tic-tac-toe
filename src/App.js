@@ -7,6 +7,7 @@ const array = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
 function App() {
   const {
+    AI,
     checkArrayFull,
     winningPlayer,
     setMove,
@@ -18,10 +19,17 @@ function App() {
     playerTwoScore,
     decideWinner,
     arrayFull,
+    aiMove,
+    setAIturn,
+    removeAIturn,
   } = useProductsContext();
 
   useEffect(() => {
     newRound();
+    if (AI) {
+      aiMove();
+      removeAIturn();
+    }
     decideWinner();
     checkArrayFull();
   }, [boardArray]);
@@ -53,6 +61,7 @@ function App() {
                   const clickId = e.target.dataset.id;
                   e.preventDefault();
                   setMove(parseInt(clickId));
+                  setAIturn();
                 }}
               >
                 {boardArray[parseInt(item)] === 1 && (

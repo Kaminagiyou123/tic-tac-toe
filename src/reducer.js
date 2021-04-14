@@ -43,7 +43,7 @@ const reducer = (state, action) => {
       ];
       for (let i = 0; i < lines.length; i++) {
         const [a, b, c] = lines[i];
-        console.log([a, b, c]);
+
         if (
           squares[a] !== null &&
           squares[a] === squares[b] &&
@@ -76,7 +76,26 @@ const reducer = (state, action) => {
       return { ...state };
     } else return { ...state, arrayFull: true };
   }
+  if (action.type === "AI_MOVE") {
+    let indexArray = state.boardArray
+      .map((value, index) => (value === null ? index : undefined))
+      .filter((x) => x);
+    console.log(indexArray);
+    const random = Math.floor(Math.random() * indexArray.length);
+    const pickedIndex = indexArray[random];
+    // console.log(pickedIndex);
+    let newArray = [...state.boardArray];
 
+    newArray[pickedIndex] = state.roundNo % 2;
+    return { ...state, boardArray: [...newArray] };
+  }
+
+  if (action.type === "AI_TURN") {
+    return { ...state, AI: true };
+  }
+  if (action.type === "REMOVE_AI_TURN") {
+    return { ...state, AI: false };
+  }
   throw new Error(`No Matching "${action.type}" - action type`);
 };
 

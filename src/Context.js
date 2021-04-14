@@ -7,10 +7,14 @@ const initialState = {
   winningPlayer: null,
   roundNo: 0,
   arrayFull: false,
+  AI: false,
 };
 const ProductsContext = React.createContext();
 export const ProductsProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const aiMove = () => {
+    dispatch({ type: "AI_MOVE" });
+  };
   const checkArrayFull = () => {
     dispatch({ type: "CHECK_FULL" });
   };
@@ -19,6 +23,12 @@ export const ProductsProvider = ({ children }) => {
   };
   const newRound = () => {
     dispatch({ type: "NEW_ROUND" });
+  };
+  const setAIturn = () => {
+    dispatch({ type: "AI_TURN" });
+  };
+  const removeAIturn = () => {
+    dispatch({ type: "REMOVE_AI_TURN" });
   };
 
   const startNewRound = () => {
@@ -40,6 +50,9 @@ export const ProductsProvider = ({ children }) => {
         startNewGame,
         decideWinner,
         checkArrayFull,
+        aiMove,
+        setAIturn,
+        removeAIturn,
       }}
     >
       {children}
