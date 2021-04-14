@@ -49,8 +49,8 @@ h3 {
   margin-top: 2%;
 
   display: grid;
-  grid-template-columns: 33% 34% 33%;
-  grid-template-rows: 33% 34% 33%;
+  grid-template-columns: 33% 33% 33%;
+  grid-template-rows: 33% 33% 33%;
 
   background: pink;
   padding: 3%;

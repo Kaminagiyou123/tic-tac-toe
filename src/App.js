@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faCircle } from "@fortawesome/free-solid-svg-icons";
 import { useProductsContext } from "./Context";
-const array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const array = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
 function App() {
   const {
@@ -51,15 +51,14 @@ function App() {
                 data-id={item}
                 onClick={(e) => {
                   const clickId = e.target.dataset.id;
-
                   e.preventDefault();
-                  setMove(parseInt(clickId - 1));
+                  setMove(parseInt(clickId));
                 }}
               >
-                {boardArray[parseInt(item) - 1] === 1 && (
+                {boardArray[parseInt(item)] === 1 && (
                   <FontAwesomeIcon icon={faTimes} className='fa' size='4x' />
                 )}
-                {boardArray[parseInt(item) - 1] === 0 && (
+                {boardArray[parseInt(item)] === 0 && (
                   <FontAwesomeIcon icon={faCircle} size='4x' className='fa' />
                 )}
               </button>

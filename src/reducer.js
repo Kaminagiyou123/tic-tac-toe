@@ -30,7 +30,7 @@ const reducer = (state, action) => {
   }
   if (action.type === "DECIDE_WINNER") {
     const decideWinner = () => {
-      const squares = state.boardArray;
+      const squares = [...state.boardArray];
       const lines = [
         [0, 1, 2],
         [3, 4, 5],
@@ -43,8 +43,9 @@ const reducer = (state, action) => {
       ];
       for (let i = 0; i < lines.length; i++) {
         const [a, b, c] = lines[i];
+        console.log([a, b, c]);
         if (
-          squares[a] >= 0 &&
+          squares[a] !== null &&
           squares[a] === squares[b] &&
           squares[a] === squares[c]
         ) {
